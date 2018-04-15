@@ -1,4 +1,4 @@
-package ru.skilanov.controller;
+package ru.skilanov.controller.users;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

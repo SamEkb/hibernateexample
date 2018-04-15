@@ -9,35 +9,43 @@
 </head>
 <body>
 <div class="container">
-    <h1><p class="text-center">All Purses</p></h1>
+    <h1><p class="text-center">All Users</p></h1>
     <table class="table">
         <thead>
         <tr>
             <td>Id</td>
-            <td>User id</td>
-            <td>User name</td>
-            <td>Currency</td>
-            <td>Amount</td>
-            <td>Created</td>
+            <td>Name</td>
+            <td>Login</td>
+            <td>Password</td>
+            <td>email</td>
+            <td>City</td>
+            <td>Role</td>
+            <td>Registration date</td>
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="purse" items="${purses}">
+        <c:forEach var="user" items="${users}">
             <tr>
-                <td>${purse.id}</td>
-                <td>${purse.user.id}</td>
-                <td>${purse.user.name}</td>
-                <td>${purse.currency.name}</td>
-                <td>${purse.amount}</td>
-                <td>${purse.createDate}</td>
+                <td>${user.id}</td>
+                <td>${user.name}</td>
+                <td>${user.login}</td>
+                <td>${user.password}</td>
+                <td>${user.email}</td>
+                <td>${user.city}</td>
+                <td>${user.role}</td>
+                <td>${user.registrationDate}</td>
                 <td>
                     <form method="get" action="/edit">
-                        <input type="number" hidden name="id" value="${purse.id}"/>
+                        <input type="number" hidden name="id" value="${user.id}"/>
                         <input type="submit" class="btn btn-default btn-xs" name="edit" value="Edit"/>
                     </form>
                     <form method="post" action="/delete">
-                        <input type="number" hidden name="id" value="${purse.id}"/>
+                        <input type="number" hidden name="id" value="${user.id}"/>
                         <input type="submit" class="btn btn-danger btn-xs" name="delete" value="Delete"/>
+                    </form>
+                    <form method="post" action="/purses">
+                        <input type="number" hidden name="id" value="${user.id}"/>
+                        <input type="submit" class="btn btn-danger btn-xs" name="delete" value="Purses"/>
                     </form>
                 </td>
             </tr>

@@ -9,11 +9,9 @@ public interface UserDao {
 
     void insert(User user);
 
-    void delete(int id);
+    void deleteUser(int id);
 
     void update(User user);
-
-    void deletePursesOfUser(int id);
 
     User findById(int id);
 }

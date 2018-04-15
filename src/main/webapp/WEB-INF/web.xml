@@ -11,12 +11,42 @@
 
     <servlet>
         <servlet-name>AllItems</servlet-name>
-        <servlet-class>ru.skilanov.controller.AllUsersServlet</servlet-class>
+        <servlet-class>ru.skilanov.controller.users.AllUsersServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>AllItems</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/list</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DeleteUser</servlet-name>
+        <servlet-class>ru.skilanov.controller.users.DeleteUserServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>DeleteUser</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UpdateUser</servlet-name>
+        <servlet-class>ru.skilanov.controller.users.UpdateUserServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>UpdateUser</servlet-name>
+        <url-pattern>/edit</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UserPurses</servlet-name>
+        <servlet-class>ru.skilanov.controller.users.UserPursesServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>UserPurses</servlet-name>
+        <url-pattern>/purses</url-pattern>
     </servlet-mapping>
 </web-app>

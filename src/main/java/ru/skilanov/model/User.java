@@ -29,4 +29,13 @@ public class User {
         this.role = role;
         this.registrationDate = registrationDate;
     }
+
+    public User(String name, String login, String password, String email, String city, Role role) {
+        this.name = name;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.city = city;
+        this.role = role;
+    }
 }
