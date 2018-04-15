@@ -28,7 +28,7 @@ public class PurseDaoImpl implements PurseDao {
 //                new Timestamp(System.currentTimeMillis()));
 //        Purse purse = new Purse(user, currency, new BigDecimal(100.67), new Timestamp(System.currentTimeMillis()));
 //        dao.insert(purse);
-
+//        dao.factory.close();
 //        for (Purse purse1 : dao.getAll()) {
 //            System.out.println(purse1);
 //        }
@@ -106,30 +106,6 @@ public class PurseDaoImpl implements PurseDao {
 
             session.getTransaction().commit();
             return result;
-        }
-    }
-
-    public void deletePursesOfUser(int id) {
-        try (Session session = factory.openSession()) {
-            session.beginTransaction();
-
-            Query query = session.createQuery("delete from Purse where user.id=:id");
-            query.setParameter("id", id);
-            query.executeUpdate();
-
-            session.getTransaction().commit();
-        }
-    }
-
-    public void deletePursesOfCurrency(int id) {
-        try (Session session = factory.openSession()) {
-            session.beginTransaction();
-
-            Query query = session.createQuery("delete from Purse where currency.id=:id");
-            query.setParameter("id", id);
-            query.executeUpdate();
-
-            session.getTransaction().commit();
         }
     }
 }

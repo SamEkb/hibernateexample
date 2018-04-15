@@ -3,6 +3,7 @@ package ru.skilanov.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import ru.skilanov.model.Currency;
 import ru.skilanov.utils.HibernateFactory;
 
@@ -11,7 +12,6 @@ import java.util.List;
 public class CurrencyDaoImpl implements CurrencyDao {
 
     private SessionFactory factory = HibernateFactory.getFactory();
-    private PurseDaoImpl purseDao = new PurseDaoImpl();
 
 //    public static void main(String[] args) {
 //        CurrencyDaoImpl currencyDao = new CurrencyDaoImpl();
@@ -32,12 +32,12 @@ public class CurrencyDaoImpl implements CurrencyDao {
 //        for (Currency currency : currencyDao.getAll()) {
 //            System.out.println(currency);
 //        }
-
-//        currencyDao.deleteCurrency(13);
+//
+//        currencyDao.deleteCurrency(17);
 //    }
 
     public void deleteCurrency(int id){
-        purseDao.deletePursesOfCurrency(id);
+        deletePursesOfCurrency(id);
         delete(id);
     }
 
@@ -73,6 +73,20 @@ public class CurrencyDaoImpl implements CurrencyDao {
             Currency currency = new Currency();
             currency.setId(id);
             session.delete(currency);
+
+            session.getTransaction().commit();
+        }
+    }
+
+
+    @Override
+    public void deletePursesOfCurrency(int id) {
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+
+            Query query = session.createQuery("delete from Purse where currency.id=:id");
+            query.setParameter("id", id);
+            query.executeUpdate();
 
             session.getTransaction().commit();
         }

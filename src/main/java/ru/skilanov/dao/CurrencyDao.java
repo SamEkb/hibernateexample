@@ -11,6 +11,8 @@ public interface CurrencyDao {
 
     void delete(int id);
 
+    void deletePursesOfCurrency(int id);
+
     void update(Currency currency);
 
     Currency findById(int id);

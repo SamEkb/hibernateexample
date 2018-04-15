@@ -13,5 +13,7 @@ public interface UserDao {
 
     void update(User user);
 
+    void deletePursesOfUser(int id);
+
     User findById(int id);
 }
