@@ -2,39 +2,18 @@ package ru.skilanov.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import ru.skilanov.model.Currency;
-import ru.skilanov.utils.HibernateFactory;
 
 import java.util.List;
 
 public class CurrencyDaoImpl implements CurrencyDao {
 
-    private SessionFactory factory = HibernateFactory.getFactory();
+    public CurrencyDaoImpl(SessionFactory factory) {
+        this.factory = factory;
+    }
 
-//    public static void main(String[] args) {
-//        CurrencyDaoImpl currencyDao = new CurrencyDaoImpl();
-//
-//        currencyDao.delete(15);
-//
-//        System.out.println(currencyDao.findById(14));
-//
-//        Currency currency = new Currency();
-//        currency.setId(15);
-//        currency.setName("Rur");
-//
-//        currencyDao.update(currency);
-//
-//        Currency currency = new Currency("Rub");
-//        currencyDao.insert(currency);
-//
-//        for (Currency currency : currencyDao.getAll()) {
-//            System.out.println(currency);
-//        }
-//
-//        currencyDao.deleteCurrency(17);
-//    }
+    private SessionFactory factory;
 
     public void deleteCurrency(int id){
         deletePursesOfCurrency(id);

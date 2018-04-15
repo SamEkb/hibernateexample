@@ -11,10 +11,16 @@ import java.io.IOException;
 import java.util.List;
 
 public class AllUsersServlet extends HttpServlet {
+    private PurseDaoImpl dao;
+
+    @Override
+    public void init() throws ServletException {
+        dao = (PurseDaoImpl) getServletContext().getAttribute("purseDao");
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        PurseDaoImpl dao = new PurseDaoImpl();
         List<Purse> purses = dao.getAll();
 
         req.getServletContext().setAttribute("purses", purses);

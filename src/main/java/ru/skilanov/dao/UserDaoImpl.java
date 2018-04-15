@@ -3,41 +3,17 @@ package ru.skilanov.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import ru.skilanov.model.Role;
 import ru.skilanov.model.User;
-import ru.skilanov.utils.HibernateFactory;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
-    private SessionFactory factory = HibernateFactory.getFactory();
+    public UserDaoImpl(SessionFactory factory) {
+        this.factory = factory;
+    }
 
-//    public static void main(String[] args) {
-//        UserDaoImpl userDao = new UserDaoImpl();
-//
-//        User user = new User("Add", "Raven", "17876", "tata@mail.com", "vice city", Role.ADMIN,
-//                new Timestamp(System.currentTimeMillis()));
-//
-//        //userDao.deleteUser(17);
-//        //userDao.insert(user);
-//
-//        userDao.deleteUser(20);
-//        userDao.factory.close();
-//        user.setId(16);
-//        user.setLogin("Raven666");
-//        user.setPassword("12345");
-//        user.setRole(Role.USER);
-//
-//        userDao.update(user);
-//
-//         userDao.insert(user);
-//
-//        for (User user : userDao.getAll()) {
-//            System.out.println(user);
-//        }
-//    }
+    private SessionFactory factory;
 
     public void deleteUser(int id) {
         deletePursesOfUser(id);
