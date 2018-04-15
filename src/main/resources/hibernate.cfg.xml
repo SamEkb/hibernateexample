@@ -12,6 +12,5 @@
         <mapping resource="ru/skilanov/model/User.hbm.xml"/>
         <mapping resource="ru/skilanov/model/Currency.hbm.xml"/>
         <mapping resource="ru/skilanov/model/Purse.hbm.xml"/>
-        <mapping resource="ru/skilanov/model/Item.hbn.xml"/>
     </session-factory>
 </hibernate-configuration>
