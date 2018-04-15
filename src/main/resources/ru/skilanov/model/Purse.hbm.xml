@@ -1,0 +1,11 @@
+<hibernate-mapping>
+    <class name="ru.skilanov.model.Purse" table="purse">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+        <many-to-one name="user" column="user_id" class="ru.skilanov.model.User" cascade="save-update"/>
+        <many-to-one name="currency" column="currency_id" class="ru.skilanov.model.Currency" cascade="save-update"/>
+        <property name="amount" column="amount"/>
+        <property name="createDate" column="create_date"/>
+    </class>
+</hibernate-mapping>
