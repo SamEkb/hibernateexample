@@ -3,7 +3,6 @@ package ru.skilanov.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import ru.skilanov.model.Purse;
 import ru.skilanov.model.User;
 
 import java.util.List;
@@ -92,5 +91,41 @@ public class UserDaoImpl implements UserDao {
 
             return user;
         }
+    }
+
+    public User finedByLogin(String login, String password) {
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+
+            Query query = session.createQuery("from User where login=:login and password=:password");
+            query.setParameter("login", login);
+            query.setParameter("password", password);
+
+            List<User> users = query.list();
+
+            for (User user1 : users) {
+                return user1;
+            }
+
+            session.getTransaction().commit();
+        }
+        return null;
+    }
+
+    public boolean isUserExist(String login, String password) {
+        boolean result = false;
+        Session session = factory.openSession();
+        session.beginTransaction();
+
+        Query query = session.createQuery("from User where login=:login and password=:password");
+        query.setParameter("login", login);
+        query.setParameter("password", password);
+
+        List<User> users = query.list();
+
+        if (users.size() > 0) {
+            result = true;
+        }
+        return result;
     }
 }

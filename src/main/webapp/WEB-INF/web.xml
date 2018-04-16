@@ -5,6 +5,16 @@
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>ru.skilanov.controller.filter.AuthenticationFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/</url-pattern>
+    </filter-mapping>
+
     <listener>
         <listener-class>ru.skilanov.controller.contextlistener.AppContextListener</listener-class>
     </listener>
@@ -78,6 +88,16 @@
     <servlet-mapping>
         <servlet-name>RegisterUser</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>LogOutUser</servlet-name>
+        <servlet-class>ru.skilanov.controller.users.LogoutServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>LogOutUser</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     
     <servlet>

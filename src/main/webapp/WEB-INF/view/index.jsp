@@ -23,12 +23,11 @@
         </div>
 
         <div class="container">
-            <input type="submit" class="btn btn-info" value="Sign in">
+            <input type="submit" class="btn btn-info" value="Sign In">
         </div>
 
     </form>
-    <p align="left"><a class="btn btn-info btn-xs" href="/usersList" role="button">To users list</a>
-    <p align="left"><a class="btn btn-info btn-xs" href="/register" role="button">Sign In</a>
+    <p align="left"><a class="btn btn-info btn-xs" href="/register" role="button">Sign Up</a>
 </div>
 </body>
 </html>

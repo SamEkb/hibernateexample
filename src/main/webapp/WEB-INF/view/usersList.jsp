@@ -55,7 +55,7 @@
         </c:forEach>
         </tbody>
     </table>
-    <p align="left"><a class="btn btn-info btn-xs" href="/" role="button">Logout</a>
+    <p align="left"><a class="btn btn-info btn-xs" href="/" role="button">Back</a>
     <p align="right"><a class="btn btn-info btn-xs" href="addUser" role="button">Add User</a>
 </div>
 </body>
