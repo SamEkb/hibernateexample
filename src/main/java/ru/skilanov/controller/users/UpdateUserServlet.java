@@ -25,7 +25,7 @@ public class UpdateUserServlet extends HttpServlet {
 
         req.setAttribute("user", user);
 
-        req.getRequestDispatcher("/WEB-INF/view//usersList.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view//updateUser.jsp").forward(req, resp);
     }
 
     @Override
@@ -48,6 +48,6 @@ public class UpdateUserServlet extends HttpServlet {
 
         userDao.update(user);
 
-        resp.sendRedirect(req.getContextPath() + "/list");
+        resp.sendRedirect("usersList");
     }
 }

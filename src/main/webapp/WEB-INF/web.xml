@@ -8,16 +8,36 @@
     <listener>
         <listener-class>ru.skilanov.controller.contextlistener.AppContextListener</listener-class>
     </listener>
+    
+    <servlet>
+        <servlet-name>MainPage</servlet-name>
+        <servlet-class>ru.skilanov.controller.users.MainPageServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>MainPage</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
     <servlet>
-        <servlet-name>AllItems</servlet-name>
+        <servlet-name>AllUsers</servlet-name>
         <servlet-class>ru.skilanov.controller.users.AllUsersServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>AllItems</servlet-name>
-        <url-pattern>/list</url-pattern>
+        <servlet-name>AllUsers</servlet-name>
+        <url-pattern>/usersList</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AddUser</servlet-name>
+        <servlet-class>ru.skilanov.controller.users.CreateUserServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>AddUser</servlet-name>
+        <url-pattern>/addUser</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -27,7 +47,7 @@
     
     <servlet-mapping>
         <servlet-name>DeleteUser</servlet-name>
-        <url-pattern>/delete</url-pattern>
+        <url-pattern>/deleteUser</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -37,16 +57,66 @@
     
     <servlet-mapping>
         <servlet-name>UpdateUser</servlet-name>
-        <url-pattern>/edit</url-pattern>
+        <url-pattern>/updateUser</url-pattern>
     </servlet-mapping>
     
     <servlet>
         <servlet-name>UserPurses</servlet-name>
-        <servlet-class>ru.skilanov.controller.users.UserPursesServlet</servlet-class>
+        <servlet-class>ru.skilanov.controller.purses.UserPursesServlet</servlet-class>
     </servlet>
     
     <servlet-mapping>
         <servlet-name>UserPurses</servlet-name>
         <url-pattern>/purses</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RegisterUser</servlet-name>
+        <servlet-class>ru.skilanov.controller.users.RegisterUserServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>RegisterUser</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AddCurrency</servlet-name>
+        <servlet-class>ru.skilanov.controller.currencies.CreateCurrencyServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>AddCurrency</servlet-name>
+        <url-pattern>/addCurrency</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AllCurrencies</servlet-name>
+        <servlet-class>ru.skilanov.controller.currencies.AllCurrencyServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>AllCurrencies</servlet-name>
+        <url-pattern>/currencyList</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DeleteCurrency</servlet-name>
+        <servlet-class>ru.skilanov.controller.currencies.DeleteCurrencyServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>DeleteCurrency</servlet-name>
+        <url-pattern>/deleteCurrency</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateCurrency</servlet-name>
+        <servlet-class>ru.skilanov.controller.currencies.UpdateCurrencyServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UpdateCurrency</servlet-name>
+        <url-pattern>/updateCurrency</url-pattern>
     </servlet-mapping>
 </web-app>

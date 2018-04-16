@@ -27,6 +27,8 @@
         </div>
 
     </form>
+    <p align="left"><a class="btn btn-info btn-xs" href="/usersList" role="button">To users list</a>
+    <p align="left"><a class="btn btn-info btn-xs" href="/register" role="button">Sign In</a>
 </div>
 </body>
 </html>

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
 
-public class CreateUserServlet extends HttpServlet {
+public class RegisterUserServlet extends HttpServlet {
     private UserDao userDao;
 
     @Override
@@ -21,7 +21,7 @@ public class CreateUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("WEB-INF/view/addUser.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/view/userRegister.jsp").forward(req, resp);
     }
 
     @Override
@@ -29,14 +29,13 @@ public class CreateUserServlet extends HttpServlet {
         String name = req.getParameter("name");
         String login = req.getParameter("login");
         String password = req.getParameter("password");
+        Role role = Role.USER;
         String email = req.getParameter("email");
-        String city = req.getParameter("city");
-        Role role = Role.getRole(req.getParameter("role"));
 
-        User user = new User(name, login, password, email, city, role, new Timestamp(System.currentTimeMillis()));
+        User user = new User(name, login, password, email, role, new Timestamp(System.currentTimeMillis()));
 
         userDao.insert(user);
 
-        resp.sendRedirect("usersList");
+        resp.sendRedirect("/");
     }
 }

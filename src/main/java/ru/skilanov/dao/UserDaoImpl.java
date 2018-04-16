@@ -93,19 +93,4 @@ public class UserDaoImpl implements UserDao {
             return user;
         }
     }
-
-    public List<Purse> getAllUserPurses(int id) {
-        try (Session session = factory.openSession()) {
-            session.beginTransaction();
-
-            Query query = session.createQuery("from Purse where user.id=:id");
-            query.setParameter("id", id);
-
-            List<Purse> list = query.list();
-
-            session.getTransaction().commit();
-
-            return list;
-        }
-    }
 }

@@ -3,6 +3,7 @@ package ru.skilanov.dao;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import ru.skilanov.model.Purse;
 
 import java.util.List;
@@ -78,6 +79,22 @@ public class PurseDaoImpl implements PurseDao {
 
             session.getTransaction().commit();
             return result;
+        }
+    }
+
+
+    public List<Purse> getAllUserPurses(int id) {
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+
+            Query query = session.createQuery("from Purse where user.id=:id");
+            query.setParameter("id", id);
+
+            List<Purse> list = query.list();
+
+            session.getTransaction().commit();
+
+            return list;
         }
     }
 }

@@ -14,4 +14,6 @@ public interface PurseDao {
     void update(Purse purse);
 
     Purse findById(int id);
+
+    List<Purse> getAllUserPurses(int id);
 }

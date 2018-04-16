@@ -9,9 +9,7 @@ public interface CurrencyDao {
 
     void insert(Currency currency);
 
-    void delete(int id);
-
-    void deletePursesOfCurrency(int id);
+    void deleteCurrency(int id);
 
     void update(Currency currency);
 

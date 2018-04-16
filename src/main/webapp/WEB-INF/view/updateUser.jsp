@@ -10,7 +10,7 @@
 <body>
 <div class="container">
     <h1>Save User</h1>
-    <form method="post" action="edit">
+    <form method="post" action="updateUser">
         <input class="form-control" name="id" value="${user.id}" type="hidden">
 
         <div class="form-group">
@@ -39,7 +39,7 @@
         </div>
 
         <input class="btn btn-default btn-xs" type="submit" value="save">
-        <a class="btn btn-default btn-xs" href="list" role="button">cancel</a>
+        <a class="btn btn-default btn-xs" href="usersList" role="button">cancel</a>
     </form>
 </div>
 </body>

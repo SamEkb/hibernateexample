@@ -15,9 +15,35 @@ public class CurrencyDaoImpl implements CurrencyDao {
 
     private SessionFactory factory;
 
+    @Override
     public void deleteCurrency(int id){
         deletePursesOfCurrency(id);
         delete(id);
+    }
+
+
+    private void delete(int id) {
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+
+            Currency currency = new Currency();
+            currency.setId(id);
+            session.delete(currency);
+
+            session.getTransaction().commit();
+        }
+    }
+
+    private void deletePursesOfCurrency(int id) {
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+
+            Query query = session.createQuery("delete from Purse where currency.id=:id");
+            query.setParameter("id", id);
+            query.executeUpdate();
+
+            session.getTransaction().commit();
+        }
     }
 
     @Override
@@ -39,33 +65,6 @@ public class CurrencyDaoImpl implements CurrencyDao {
             session.beginTransaction();
 
             session.save(currency);
-
-            session.getTransaction().commit();
-        }
-    }
-
-    @Override
-    public void delete(int id) {
-        try (Session session = factory.openSession()) {
-            session.beginTransaction();
-
-            Currency currency = new Currency();
-            currency.setId(id);
-            session.delete(currency);
-
-            session.getTransaction().commit();
-        }
-    }
-
-
-    @Override
-    public void deletePursesOfCurrency(int id) {
-        try (Session session = factory.openSession()) {
-            session.beginTransaction();
-
-            Query query = session.createQuery("delete from Purse where currency.id=:id");
-            query.setParameter("id", id);
-            query.executeUpdate();
 
             session.getTransaction().commit();
         }

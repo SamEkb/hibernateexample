@@ -2,7 +2,6 @@ package ru.skilanov.model;
 
 import lombok.*;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Data
@@ -37,5 +36,14 @@ public class User {
         this.email = email;
         this.city = city;
         this.role = role;
+    }
+
+    public User(String name, String login, String password, String email, Role role, Timestamp registrationDate) {
+        this.name = name;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.registrationDate = registrationDate;
     }
 }

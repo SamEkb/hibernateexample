@@ -8,47 +8,32 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <div class="container">
-    <h1><p class="text-center">All Users</p></h1>
+    <h1><p class="text-center">All Currencies</p></h1>
     <p>
-        <a class="btn btn-info btn-xs" href="/currencyList" role="button">All Currency</a>
+    <a class="btn btn-info btn-xs" href="/usersList" role="button">All users</a>
     </p>
     <table class="table">
         <thead>
         <tr>
             <td>Id</td>
             <td>Name</td>
-            <td>Login</td>
-            <td>Password</td>
-            <td>email</td>
-            <td>City</td>
-            <td>Role</td>
-            <td>Registration date</td>
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="currency" items="${users}">
+        <c:forEach var="currency" items="${currencies}">
             <tr>
                 <td>${currency.id}</td>
                 <td>${currency.name}</td>
-                <td>${currency.login}</td>
-                <td>${currency.password}</td>
-                <td>${currency.email}</td>
-                <td>${currency.city}</td>
-                <td>${currency.role}</td>
-                <td>${currency.registrationDate}</td>
                 <td>
-                    <form method="get" action="/editUser">
+                    <form method="get" action="updateCurrency">
                         <input type="number" hidden name="id" value="${currency.id}"/>
                         <input type="submit" class="btn btn-default btn-xs" name="edit" value="Edit"/>
                     </form>
-                    <form method="post" action="/deleteUser">
+                    <form method="post" action="/deleteCurrency">
                         <input type="number" hidden name="id" value="${currency.id}"/>
                         <input type="submit" class="btn btn-danger btn-xs" name="delete" value="Delete"/>
-                    </form>
-                    <form method="post" action="/purses">
-                        <input type="number" hidden name="id" value="${currency.id}"/>
-                        <input type="submit" class="btn btn-danger btn-xs" name="delete" value="Purses"/>
                     </form>
                 </td>
             </tr>
@@ -56,7 +41,7 @@
         </tbody>
     </table>
     <p align="left"><a class="btn btn-info btn-xs" href="/" role="button">Logout</a>
-    <p align="right"><a class="btn btn-info btn-xs" href="addUser" role="button">Add User</a>
+    <p align="right"><a class="btn btn-info btn-xs" href="addCurrency" role="button">Add currency</a>
 </div>
 </body>
 </html>
