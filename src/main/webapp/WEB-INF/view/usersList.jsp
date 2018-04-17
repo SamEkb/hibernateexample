@@ -38,7 +38,7 @@
                 <td>${user.role}</td>
                 <td>${user.registrationDate}</td>
                 <td>
-                    <form method="get" action="/editUser">
+                    <form method="get" action="/updateUser">
                         <input type="number" hidden name="id" value="${user.id}"/>
                         <input type="submit" class="btn btn-default btn-xs" name="edit" value="Edit"/>
                     </form>

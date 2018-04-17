@@ -14,15 +14,40 @@ import java.io.IOException;
 
 import static java.util.Objects.nonNull;
 
+/**
+ * Фильтр аутентификации и авторизации.
+ */
 public class AuthenticationFilter implements Filter {
+    /**
+     * Фабрика сессий hibernate.
+     */
     private SessionFactory factory = new Configuration().configure().buildSessionFactory();
 
+    /**
+     * Метод инициализации.
+     *
+     * @param filterConfig FilterConfig
+     * @throws ServletException ServletException
+     */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }
 
+    /**
+     * Метод отвечает за аутентификацию и авторизацию пользователя, если пользователь открыл сеанс, то при попытке входа
+     * в приложение будет отправлен на соответствующую страницу. Если не вошел, то будет открыт сеанс. Если такого
+     * пользователя не существует, то он будет отправлен на страницу аутентификации.
+     *
+     * @param servletRequest  ServletRequest
+     * @param servletResponse ServletResponse
+     * @param filterChain     FilterChain
+     * @throws IOException      IOException
+     * @throws ServletException ServletException
+     */
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
+                         FilterChain filterChain) throws IOException, ServletException {
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
@@ -32,14 +57,14 @@ public class AuthenticationFilter implements Filter {
 
         UserDaoImpl userDao = new UserDaoImpl(factory);
 
-        User user = userDao.finedByLogin(login, password);
+        User user = userDao.finedByLoginAndPassword(login, password);
 
         if (nonNull(session) && session.getAttribute("user") != null) {
             User userRole = (User) session.getAttribute("user");
 
             moveToMenu(response, request, userRole.getRole());
         } else if (userDao.isUserExist(login, password)) {
-            Role role = userDao.finedByLogin(login, password).getRole();
+            Role role = userDao.finedByLoginAndPassword(login, password).getRole();
             request.getSession().setAttribute("user", user);
 
             moveToMenu(response, request, role);
@@ -48,6 +73,15 @@ public class AuthenticationFilter implements Filter {
         }
     }
 
+    /**
+     * Метод навигации по страницам, в зависимости от прав пользователя.
+     *
+     * @param response HttpServletResponse
+     * @param request  HttpServletRequest
+     * @param role     Role
+     * @throws ServletException ServletException
+     * @throws IOException      IOException
+     */
     private void moveToMenu(HttpServletResponse response, HttpServletRequest request, Role role) throws ServletException, IOException {
         if (role.equals(Role.ADMIN)) {
             request.getRequestDispatcher("WEB-INF/view/adminPage.jsp").forward(request, response);

@@ -10,26 +10,37 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Сервлет списка всех пользователей
+ */
 public class AllUsersServlet extends HttpServlet {
+    /**
+     * JSP страница всех пользователей.
+     */
+    private static final String ALL_USERS = "/WEB-INF/view//usersList.jsp";
+    /**
+     * Дао пользователя.
+     */
     private UserDaoImpl dao;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         dao = (UserDaoImpl) getServletContext().getAttribute("userDao");
     }
 
+    /**
+     * Гет метод для запроса страницы всех пользователей.
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException ServletException
+     * @throws IOException IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
         List<User> users = dao.getAll();
 
         req.getServletContext().setAttribute("users", users);
 
-        req.getRequestDispatcher("/WEB-INF/view//usersList.jsp").forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        req.getRequestDispatcher(ALL_USERS).forward(req, resp);
     }
 }

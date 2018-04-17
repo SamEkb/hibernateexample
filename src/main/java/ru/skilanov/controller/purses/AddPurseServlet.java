@@ -16,25 +16,56 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 
+/**
+ * Сервлет отвечающий за добавление кошелька.
+ */
 public class AddPurseServlet extends HttpServlet {
+    /**
+     * JSP страница добавления кошелька.
+     */
+    private static final String ADD_PURSE = "WEB-INF/view/addPurse.jsp";
+    /**
+     * Дао кошелька.
+     */
     private PurseDao purseDao;
+    /**
+     * Дао валюты.
+     */
     private CurrencyDao currencyDao;
 
+    /**
+     * Метод инициализации.
+     */
     @Override
     public void init() {
         purseDao = (PurseDao) getServletContext().getAttribute("purseDao");
         currencyDao = (CurrencyDao) getServletContext().getAttribute("currencyDao");
     }
 
+    /**
+     * Гет метод отвечающий за запрос страницы добавления кошелька.
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException ServletException
+     * @throws IOException      IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Currency> currencies = currencyDao.getAll();
 
         req.setAttribute("currencies", currencies);
 
-        req.getRequestDispatcher("WEB-INF/view/addPurse.jsp").forward(req, resp);
+        req.getRequestDispatcher(ADD_PURSE).forward(req, resp);
     }
 
+    /**
+     * Пост метод отвечающий за добавление клиентом кошелька.
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws IOException IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
@@ -47,6 +78,6 @@ public class AddPurseServlet extends HttpServlet {
 
         purseDao.insert(purse);
 
-        resp.sendRedirect("userPage");
+        resp.sendRedirect("purses");
     }
 }

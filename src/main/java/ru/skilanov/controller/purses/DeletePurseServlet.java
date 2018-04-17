@@ -1,6 +1,6 @@
-package ru.skilanov.controller.currencies;
+package ru.skilanov.controller.purses;
 
-import ru.skilanov.dao.CurrencyDao;
+import ru.skilanov.dao.PurseDao;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,24 +8,24 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Сервлет отвечающий за удаление валюты.
+ * Сервлет отвечающий за удаление кошелька.
  */
-public class DeleteCurrencyServlet extends HttpServlet {
+public class DeletePurseServlet extends HttpServlet {
     /**
-     * Дао валюты.
+     * Дао кошелька.
      */
-    private CurrencyDao currencyDao;
+    private PurseDao purseDao;
 
     /**
      * Метод инициализации.
      */
     @Override
     public void init() {
-        currencyDao = (CurrencyDao) getServletContext().getAttribute("currencyDao");
+        purseDao = (PurseDao) getServletContext().getAttribute("purseDao");
     }
 
     /**
-     * Пост метод отвечающий за удаление клиентом валюты.
+     * Пост метод отвечающий за удаление клиентом кошелька.
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
@@ -35,8 +35,8 @@ public class DeleteCurrencyServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int id = Integer.parseInt(req.getParameter("id"));
 
-        currencyDao.deleteCurrency(id);
+        purseDao.delete(id);
 
-        resp.sendRedirect("currencyList");
+        resp.sendRedirect("purses");
     }
 }

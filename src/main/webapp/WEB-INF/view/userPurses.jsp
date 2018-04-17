@@ -31,7 +31,7 @@
                         <input type="number" hidden name="id" value="${purs.id}"/>
                         <input type="submit" class="btn btn-default btn-xs" name="edit" value="Edit"/>
                     </form>
-                    <form method="post" action="/delete">
+                    <form method="post" action="/deletePurse">
                         <input type="number" hidden name="id" value="${purs.id}"/>
                         <input type="submit" class="btn btn-danger btn-xs" name="delete" value="Delete"/>
                     </form>

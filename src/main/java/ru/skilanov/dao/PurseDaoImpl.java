@@ -8,14 +8,30 @@ import ru.skilanov.model.Purse;
 
 import java.util.List;
 
+/**
+ * реализация интерфейса PurseDaoю
+ */
 public class PurseDaoImpl implements PurseDao {
 
+    /**
+     * Фабрика сессий hibernate.
+     */
     private SessionFactory factory;
 
+    /**
+     * Конструктор.
+     * @param factory SessionFactory
+     */
     public PurseDaoImpl(SessionFactory factory) {
         this.factory = factory;
     }
 
+    /**
+     * Метод возвращает список всех кошельков.
+     *
+     * @return List
+     */
+    @Override
     public List<Purse> getAll() {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
@@ -28,6 +44,12 @@ public class PurseDaoImpl implements PurseDao {
         }
     }
 
+    /**
+     * Метод добавления нового кошелька.
+     *
+     * @param purse Purse
+     */
+    @Override
     public void insert(Purse purse) {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
@@ -38,6 +60,12 @@ public class PurseDaoImpl implements PurseDao {
         }
     }
 
+    /**
+     * Метод удаления кошелька.
+     *
+     * @param id int
+     */
+    @Override
     public void delete(int id) {
         try (Session session = factory.openSession()) {
 
@@ -51,6 +79,12 @@ public class PurseDaoImpl implements PurseDao {
         }
     }
 
+    /**
+     * Метод редактирования кошелька.
+     *
+     * @param purse Purse
+     */
+    @Override
     public void update(Purse purse) {
         try (Session session = factory.openSession()) {
 
@@ -62,6 +96,13 @@ public class PurseDaoImpl implements PurseDao {
         }
     }
 
+    /**
+     * Метод поиска по id
+     *
+     * @param id int
+     * @return Purse
+     */
+    @Override
     public Purse findById(int id) {
         try (Session session = factory.openSession()) {
 
@@ -79,7 +120,13 @@ public class PurseDaoImpl implements PurseDao {
         }
     }
 
-
+    /**
+     * Метод возвращает все кошельки пользователя.
+     *
+     * @param id int
+     * @return List
+     */
+    @Override
     public List<Purse> getAllUserPurses(int id) {
         try (Session session = factory.openSession()) {
             session.beginTransaction();

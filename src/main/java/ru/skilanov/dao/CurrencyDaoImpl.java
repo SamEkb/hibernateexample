@@ -7,21 +7,41 @@ import ru.skilanov.model.Currency;
 
 import java.util.List;
 
+/**
+ * Реализация интерфейса CurrencyDao
+ */
 public class CurrencyDaoImpl implements CurrencyDao {
 
+    /**
+     * Фабрика сессий hibernate.
+     */
     private SessionFactory factory;
 
+    /**
+     * Конструктор
+     *
+     * @param factory SessionFactory
+     */
     public CurrencyDaoImpl(SessionFactory factory) {
         this.factory = factory;
     }
 
+    /**
+     * Метод удаляет валюту.
+     *
+     * @param id nt
+     */
     @Override
     public void deleteCurrency(int id) {
         deletePursesOfCurrency(id);
         delete(id);
     }
 
-
+    /**
+     * Метод удаляет валюту.
+     *
+     * @param id int
+     */
     private void delete(int id) {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
@@ -34,6 +54,11 @@ public class CurrencyDaoImpl implements CurrencyDao {
         }
     }
 
+    /**
+     * Метод удаляет кошельки с валютой.
+     *
+     * @param id int
+     */
     private void deletePursesOfCurrency(int id) {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
@@ -46,6 +71,11 @@ public class CurrencyDaoImpl implements CurrencyDao {
         }
     }
 
+    /**
+     * Метод возвращает список всех валют.
+     *
+     * @return List
+     */
     @Override
     public List<Currency> getAll() {
         try (Session session = factory.openSession()) {
@@ -59,6 +89,11 @@ public class CurrencyDaoImpl implements CurrencyDao {
         }
     }
 
+    /**
+     * Метод добавляет новую валюту.
+     *
+     * @param currency Currency
+     */
     @Override
     public void insert(Currency currency) {
         try (Session session = factory.openSession()) {
@@ -70,6 +105,11 @@ public class CurrencyDaoImpl implements CurrencyDao {
         }
     }
 
+    /**
+     * Метод обновления валюты.
+     *
+     * @param currency Currency
+     */
     @Override
     public void update(Currency currency) {
         try (Session session = factory.openSession()) {
@@ -81,6 +121,12 @@ public class CurrencyDaoImpl implements CurrencyDao {
         }
     }
 
+    /**
+     * Метод поиска валюты по id.
+     *
+     * @param id int
+     * @return Currency
+     */
     @Override
     public Currency findById(int id) {
         try (Session session = factory.openSession()) {

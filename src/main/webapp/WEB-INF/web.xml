@@ -69,16 +69,6 @@
         <servlet-name>UpdateUser</servlet-name>
         <url-pattern>/updateUser</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>UpdateUserInfo</servlet-name>
-        <servlet-class>ru.skilanov.controller.users.UpdateUserInfoServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>UpdateUserInfo</servlet-name>
-        <url-pattern>/updateUserInfo</url-pattern>
-    </servlet-mapping>
     
     <servlet>
         <servlet-name>UserPurses</servlet-name>
@@ -88,6 +78,16 @@
     <servlet-mapping>
         <servlet-name>UserPurses</servlet-name>
         <url-pattern>/purses</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UserInfo</servlet-name>
+        <servlet-class>ru.skilanov.controller.users.UserInfoServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UserInfo</servlet-name>
+        <url-pattern>/userInfoPage</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -158,5 +158,15 @@
     <servlet-mapping>
         <servlet-name>AddPurse</servlet-name>
         <url-pattern>/addPurse</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DeletePurse</servlet-name>
+        <servlet-class>ru.skilanov.controller.purses.DeletePurseServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>DeletePurse</servlet-name>
+        <url-pattern>/deletePurse</url-pattern>
     </servlet-mapping>
 </web-app>

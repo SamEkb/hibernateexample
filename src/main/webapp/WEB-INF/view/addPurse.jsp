@@ -25,7 +25,7 @@
             <input class="form-control" name="amount" placeholder="Amount">
         </div>
         <input class="btn btn-default btn-xs" type="submit" value="Save">
-        <a class="btn btn-default btn-xs" href="usersList" role="button">cancel</a>
+        <a class="btn btn-default btn-xs" href="userPurses" role="button">cancel</a>
     </form>
 </div>
 </body>

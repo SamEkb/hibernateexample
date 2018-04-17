@@ -10,10 +10,21 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+/**
+ * Класс отвечает за инициализацию слоя дао в приложении.
+ */
 public class AppContextListener implements ServletContextListener {
 
+    /**
+     * Фабрика сессий hibernate
+     */
     private SessionFactory sessionFactory;
 
+    /**
+     * Метод инициализации.
+     *
+     * @param sce ServletContextEvent
+     */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -27,6 +38,11 @@ public class AppContextListener implements ServletContextListener {
         context.setAttribute("currencyDao", currencyDao);
     }
 
+    /**
+     * Метод закрывает ресурсы по завершению работы приложения.
+     *
+     * @param sce ServletContextEvent
+     */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         sessionFactory.close();
