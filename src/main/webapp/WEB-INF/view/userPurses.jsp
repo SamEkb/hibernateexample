@@ -40,7 +40,8 @@
         </c:forEach>
         </tbody>
     </table>
-    <p align="left"><a class="btn btn-info btn-xs" href="usersList" role="button">Back</a></p>
+    <p align="left"><a class="btn btn-info btn-xs" href="userPage" role="button">Back</a></p>
+    <p align="left"><a class="btn btn-info btn-xs" href="addPurse" role="button">Add purse</a></p>
 </div>
 </body>
 </html>

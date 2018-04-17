@@ -10,11 +10,11 @@ import java.util.List;
 
 public class PurseDaoImpl implements PurseDao {
 
+    private SessionFactory factory;
+
     public PurseDaoImpl(SessionFactory factory) {
         this.factory = factory;
     }
-
-    private SessionFactory factory;
 
     public List<Purse> getAll() {
         try (Session session = factory.openSession()) {
@@ -35,7 +35,6 @@ public class PurseDaoImpl implements PurseDao {
             session.save(purse);
 
             session.getTransaction().commit();
-            factory.close();
         }
     }
 
@@ -49,7 +48,6 @@ public class PurseDaoImpl implements PurseDao {
             session.delete(purse);
 
             session.getTransaction().commit();
-            factory.close();
         }
     }
 
@@ -61,7 +59,6 @@ public class PurseDaoImpl implements PurseDao {
             session.update(purse);
 
             session.getTransaction().commit();
-            factory.close();
         }
     }
 

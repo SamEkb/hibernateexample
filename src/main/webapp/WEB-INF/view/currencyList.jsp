@@ -22,17 +22,17 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="currency" items="${currencies}">
+        <c:forEach var="user" items="${currencies}">
             <tr>
-                <td>${currency.id}</td>
-                <td>${currency.name}</td>
+                <td>${user.id}</td>
+                <td>${user.name}</td>
                 <td>
                     <form method="get" action="updateCurrency">
-                        <input type="number" hidden name="id" value="${currency.id}"/>
+                        <input type="number" hidden name="id" value="${user.id}"/>
                         <input type="submit" class="btn btn-default btn-xs" name="edit" value="Edit"/>
                     </form>
                     <form method="post" action="/deleteCurrency">
-                        <input type="number" hidden name="id" value="${currency.id}"/>
+                        <input type="number" hidden name="id" value="${user.id}"/>
                         <input type="submit" class="btn btn-danger btn-xs" name="delete" value="Delete"/>
                     </form>
                 </td>

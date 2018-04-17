@@ -1,7 +1,6 @@
 package ru.skilanov.controller.users;
 
 import ru.skilanov.dao.UserDaoImpl;
-import ru.skilanov.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +22,6 @@ public class DeleteUserServlet extends HttpServlet {
 
         userDao.deleteUser(id);
 
-        resp.sendRedirect(req.getContextPath() + "/list");
+        resp.sendRedirect("usersList");
     }
 }

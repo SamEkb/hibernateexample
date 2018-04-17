@@ -7,7 +7,7 @@
 
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
-        <filter-class>ru.skilanov.controller.filter.AuthenticationFilter</filter-class>
+        <filter-class>ru.skilanov.filter.AuthenticationFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -16,7 +16,7 @@
     </filter-mapping>
 
     <listener>
-        <listener-class>ru.skilanov.controller.contextlistener.AppContextListener</listener-class>
+        <listener-class>ru.skilanov.contextlistener.AppContextListener</listener-class>
     </listener>
     
     <servlet>
@@ -68,6 +68,16 @@
     <servlet-mapping>
         <servlet-name>UpdateUser</servlet-name>
         <url-pattern>/updateUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateUserInfo</servlet-name>
+        <servlet-class>ru.skilanov.controller.users.UpdateUserInfoServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UpdateUserInfo</servlet-name>
+        <url-pattern>/updateUserInfo</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -138,5 +148,15 @@
     <servlet-mapping>
         <servlet-name>UpdateCurrency</servlet-name>
         <url-pattern>/updateCurrency</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AddPurse</servlet-name>
+        <servlet-class>ru.skilanov.controller.purses.AddPurseServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>AddPurse</servlet-name>
+        <url-pattern>/addPurse</url-pattern>
     </servlet-mapping>
 </web-app>

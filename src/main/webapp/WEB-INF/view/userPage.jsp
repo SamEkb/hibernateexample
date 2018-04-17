@@ -19,8 +19,10 @@
             <td>Name</td>
             <td>Login</td>
             <td>Password</td>
-            <td>Role</td>
             <td>Email</td>
+            <td>City</td>
+            <td>Role</td>
+            <td>Registration date</td>
         </tr>
         </thead>
         <tbody>
@@ -29,12 +31,18 @@
             <td><c:out value="${user.name}"/></td>
             <td><c:out value="${user.login}"/></td>
             <td><c:out value="${user.password}"/></td>
-            <td><c:out value="${user.role}"/></td>
             <td><c:out value="${user.email}"/></td>
+            <td><c:out value="${user.city}"/></td>
+            <td><c:out value="${user.role}"/></td>
+            <td><c:out value="${user.registrationDate}"/></td>
             <td>
-                <form method="post" action="/delete">
+                <form method="get" action="updateUserInfo">
                     <input type="number" hidden name="id" value="${user.id}"/>
                     <input type="submit" class="btn btn-info btn-xs" name="update" value="Edit"/>
+                </form>
+                <form method="post" action="/purses">
+                    <input type="number" hidden name="id" value="${user.id}"/>
+                    <input type="submit" class="btn btn-danger btn-xs" name="delete" value="Purses"/>
                 </form>
             </td>
         </tr>

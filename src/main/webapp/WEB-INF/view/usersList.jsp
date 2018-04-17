@@ -27,27 +27,27 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="currency" items="${users}">
+        <c:forEach var="user" items="${users}">
             <tr>
-                <td>${currency.id}</td>
-                <td>${currency.name}</td>
-                <td>${currency.login}</td>
-                <td>${currency.password}</td>
-                <td>${currency.email}</td>
-                <td>${currency.city}</td>
-                <td>${currency.role}</td>
-                <td>${currency.registrationDate}</td>
+                <td>${user.id}</td>
+                <td>${user.name}</td>
+                <td>${user.login}</td>
+                <td>${user.password}</td>
+                <td>${user.email}</td>
+                <td>${user.city}</td>
+                <td>${user.role}</td>
+                <td>${user.registrationDate}</td>
                 <td>
                     <form method="get" action="/editUser">
-                        <input type="number" hidden name="id" value="${currency.id}"/>
+                        <input type="number" hidden name="id" value="${user.id}"/>
                         <input type="submit" class="btn btn-default btn-xs" name="edit" value="Edit"/>
                     </form>
                     <form method="post" action="/deleteUser">
-                        <input type="number" hidden name="id" value="${currency.id}"/>
+                        <input type="number" hidden name="id" value="${user.id}"/>
                         <input type="submit" class="btn btn-danger btn-xs" name="delete" value="Delete"/>
                     </form>
                     <form method="post" action="/purses">
-                        <input type="number" hidden name="id" value="${currency.id}"/>
+                        <input type="number" hidden name="id" value="${user.id}"/>
                         <input type="submit" class="btn btn-danger btn-xs" name="delete" value="Purses"/>
                     </form>
                 </td>
