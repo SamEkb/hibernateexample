@@ -2,7 +2,6 @@ package ru.skilanov.controller.purses;
 
 import ru.skilanov.dao.PurseDao;
 import ru.skilanov.dao.UserDao;
-import ru.skilanov.dao.UserDaoImpl;
 import ru.skilanov.model.Purse;
 import ru.skilanov.model.User;
 

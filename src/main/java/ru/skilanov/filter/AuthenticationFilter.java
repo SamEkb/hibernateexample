@@ -1,4 +1,4 @@
-package ru.skilanov.controller.filter;
+package ru.skilanov.filter;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 import static java.util.Objects.nonNull;
 
@@ -39,7 +38,7 @@ public class AuthenticationFilter implements Filter {
             User userRole = (User) session.getAttribute("user");
 
             moveToMenu(response, request, userRole.getRole());
-        } else if (userDao.isUserExist(login,password)) {
+        } else if (userDao.isUserExist(login, password)) {
             Role role = userDao.finedByLogin(login, password).getRole();
             request.getSession().setAttribute("user", user);
 

@@ -9,14 +9,14 @@ import java.util.List;
 
 public class CurrencyDaoImpl implements CurrencyDao {
 
+    private SessionFactory factory;
+
     public CurrencyDaoImpl(SessionFactory factory) {
         this.factory = factory;
     }
 
-    private SessionFactory factory;
-
     @Override
-    public void deleteCurrency(int id){
+    public void deleteCurrency(int id) {
         deletePursesOfCurrency(id);
         delete(id);
     }

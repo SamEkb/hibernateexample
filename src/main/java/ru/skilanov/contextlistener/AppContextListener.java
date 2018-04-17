@@ -1,4 +1,4 @@
-package ru.skilanov.controller.contextlistener;
+package ru.skilanov.contextlistener;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

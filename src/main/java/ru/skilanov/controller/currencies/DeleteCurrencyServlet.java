@@ -13,7 +13,7 @@ public class DeleteCurrencyServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-       currencyDao = (CurrencyDao) getServletContext().getAttribute("currencyDao");
+        currencyDao = (CurrencyDao) getServletContext().getAttribute("currencyDao");
     }
 
     @Override
