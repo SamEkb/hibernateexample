@@ -35,11 +35,28 @@ public class UserPursesServlet extends HttpServlet {
      * Дао кошелька.
      */
     private PurseDao purseDao;
-
     /**
      * Дао пользователя.
      */
     private UserDao userDao;
+
+    /**
+     * Сеттер.
+     *
+     * @param purseDao PurseDao
+     */
+    public void setPurseDao(PurseDao purseDao) {
+        this.purseDao = purseDao;
+    }
+
+    /**
+     * Сеттер.
+     *
+     * @param userDao UserDao
+     */
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     /**
      * Метод инициализации.

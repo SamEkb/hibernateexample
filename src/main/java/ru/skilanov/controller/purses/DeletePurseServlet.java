@@ -26,6 +26,14 @@ public class DeletePurseServlet extends HttpServlet {
     private PurseDao purseDao;
 
     /**
+     * Сеттер.
+     * @param purseDao PurseDao
+     */
+    public void setPurseDao(PurseDao purseDao) {
+        this.purseDao = purseDao;
+    }
+
+    /**
      * Метод инициализации.
      */
     @Override

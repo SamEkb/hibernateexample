@@ -50,6 +50,24 @@ public class AddPurseServlet extends HttpServlet {
     private CurrencyDao currencyDao;
 
     /**
+     * Сеттер.
+     *
+     * @param currencyDao CurrencyDao
+     */
+    public void setCurrencyDao(CurrencyDao currencyDao) {
+        this.currencyDao = currencyDao;
+    }
+
+    /**
+     * Сеттер.
+     *
+     * @param purseDao PurseDao
+     */
+    public void setPurseDao(PurseDao purseDao) {
+        this.purseDao = purseDao;
+    }
+
+    /**
      * Метод инициализации.
      */
     @Override
