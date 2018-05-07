@@ -33,6 +33,15 @@ public class RegisterUserServlet extends HttpServlet {
     private UserDao userDao;
 
     /**
+     * Сеттер.
+     *
+     * @param userDao UserDao
+     */
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    /**
      * Метод инициализации.
      */
     @Override

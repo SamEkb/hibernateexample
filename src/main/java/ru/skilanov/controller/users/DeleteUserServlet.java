@@ -26,6 +26,15 @@ public class DeleteUserServlet extends HttpServlet {
     private UserDaoImpl userDao;
 
     /**
+     * Сеттер.
+     *
+     * @param userDao UserDaoImpl
+     */
+    public void setUserDao(UserDaoImpl userDao) {
+        this.userDao = userDao;
+    }
+
+    /**
      * Метод инициализации.
      */
     @Override
