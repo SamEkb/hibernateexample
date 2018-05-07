@@ -31,6 +31,15 @@ public class CreateCurrencyServlet extends HttpServlet {
     private CurrencyDao currencyDao;
 
     /**
+     * Сеттер.
+     *
+     * @param currencyDao CurrencyDao
+     */
+    public void setCurrencyDao(CurrencyDao currencyDao) {
+        this.currencyDao = currencyDao;
+    }
+
+    /**
      * Метод инициализации.
      *
      * @throws ServletException ServletException
