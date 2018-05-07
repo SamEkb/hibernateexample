@@ -20,6 +20,14 @@ public class RegisterUserServlet extends HttpServlet {
      */
     private static final String REGISTER = "WEB-INF/view/userRegister.jsp";
     /**
+     * Главная страница.
+     */
+    private static final String INDEX = "/";
+    /**
+     * Константа дао пользователя.
+     */
+    private static final String USER_DAO = "userDao";
+    /**
      * Дао пользователя.
      */
     private UserDao userDao;
@@ -29,7 +37,7 @@ public class RegisterUserServlet extends HttpServlet {
      */
     @Override
     public void init() {
-        userDao = (UserDao) getServletContext().getAttribute("userDao");
+        userDao = (UserDao) getServletContext().getAttribute(USER_DAO);
     }
 
     /**
@@ -54,16 +62,16 @@ public class RegisterUserServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String name = req.getParameter("name");
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
+        String name = req.getParameter(User.NAME);
+        String login = req.getParameter(User.LOGIN);
+        String password = req.getParameter(User.PASSWORD);
         Role role = Role.USER;
-        String email = req.getParameter("email");
+        String email = req.getParameter(User.EMAIL);
 
         User user = new User(name, login, password, email, role, new Timestamp(System.currentTimeMillis()));
 
         userDao.insert(user);
 
-        resp.sendRedirect("/");
+        resp.sendRedirect(INDEX);
     }
 }

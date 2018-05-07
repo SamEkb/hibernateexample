@@ -19,6 +19,10 @@ import static java.util.Objects.nonNull;
  */
 public class AuthenticationFilter implements Filter {
     /**
+     * Атрибут.
+     */
+    private static final String USER = "user";
+    /**
      * Фабрика сессий hibernate.
      */
     private SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -52,20 +56,20 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
 
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
+        String login = request.getParameter(User.LOGIN);
+        String password = request.getParameter(User.PASSWORD);
 
         UserDaoImpl userDao = new UserDaoImpl(factory);
 
         User user = userDao.finedByLoginAndPassword(login, password);
 
-        if (nonNull(session) && session.getAttribute("user") != null) {
-            User userRole = (User) session.getAttribute("user");
+        if (nonNull(session) && session.getAttribute(USER) != null) {
+            User userRole = (User) session.getAttribute(USER);
 
             moveToMenu(response, request, userRole.getRole());
         } else if (userDao.isUserExist(login, password)) {
             Role role = userDao.finedByLoginAndPassword(login, password).getRole();
-            request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute(USER, user);
 
             moveToMenu(response, request, role);
         } else {

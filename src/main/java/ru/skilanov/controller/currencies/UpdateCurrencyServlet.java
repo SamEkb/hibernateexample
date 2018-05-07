@@ -18,6 +18,18 @@ public class UpdateCurrencyServlet extends HttpServlet {
      */
     private static final String UPDATE_CURRENCY = "/WEB-INF/view//updateCurrency.jsp";
     /**
+     * Jsp страница всех валют.
+     */
+    private static final String CURRENCY_LIST = "/currencyList";
+    /**
+     * Атрибут.
+     */
+    private static final String CURRENCY = "currency";
+    /**
+     * Константа дао валют.
+     */
+    private static final String CURRENCY_DAO = "currencyDao";
+    /**
      * Дао валюты.
      */
     private CurrencyDao currencyDao;
@@ -27,7 +39,7 @@ public class UpdateCurrencyServlet extends HttpServlet {
      */
     @Override
     public void init() {
-        currencyDao = (CurrencyDao) getServletContext().getAttribute("currencyDao");
+        currencyDao = (CurrencyDao) getServletContext().getAttribute(CURRENCY_DAO);
     }
 
     /**
@@ -40,10 +52,10 @@ public class UpdateCurrencyServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
+        int id = Integer.parseInt(req.getParameter(Currency.ID));
         Currency currency = currencyDao.findById(id);
 
-        req.setAttribute("currency", currency);
+        req.setAttribute(CURRENCY, currency);
 
         req.getRequestDispatcher(UPDATE_CURRENCY).forward(req, resp);
     }
@@ -57,14 +69,14 @@ public class UpdateCurrencyServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        String name = req.getParameter("name");
+        int id = Integer.parseInt(req.getParameter(Currency.ID));
+        String name = req.getParameter(Currency.NAME);
 
         Currency currency = currencyDao.findById(id);
         currency.setName(name);
 
         currencyDao.update(currency);
 
-        resp.sendRedirect("/currencyList");
+        resp.sendRedirect(CURRENCY_LIST);
     }
 }

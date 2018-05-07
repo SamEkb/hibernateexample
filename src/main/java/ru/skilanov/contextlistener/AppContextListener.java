@@ -16,7 +16,7 @@ import javax.servlet.ServletContextListener;
 public class AppContextListener implements ServletContextListener {
 
     /**
-     * Фабрика сессий hibernate
+     * Фабрика сессий hibernate.
      */
     private SessionFactory sessionFactory;
 

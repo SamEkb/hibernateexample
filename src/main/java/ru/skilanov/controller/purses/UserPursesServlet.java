@@ -20,6 +20,18 @@ public class UserPursesServlet extends HttpServlet {
      */
     private static final String USER_PURSES = "/WEB-INF/view//userPurses.jsp";
     /**
+     * Атрибут.
+     */
+    private static final String PURSES = "purses";
+    /**
+     * Константа дао кошельков.
+     */
+    private static final String PURSE_DAO = "purseDao";
+    /**
+     * Константа дао пользователей.
+     */
+    private static final String USER_DAO = "userDao";
+    /**
      * Дао кошелька.
      */
     private PurseDao purseDao;
@@ -34,8 +46,8 @@ public class UserPursesServlet extends HttpServlet {
      */
     @Override
     public void init() {
-        purseDao = (PurseDao) getServletContext().getAttribute("purseDao");
-        userDao = (UserDao) getServletContext().getAttribute("userDao");
+        purseDao = (PurseDao) getServletContext().getAttribute(PURSE_DAO);
+        userDao = (UserDao) getServletContext().getAttribute(USER_DAO);
     }
 
     /**
@@ -61,10 +73,10 @@ public class UserPursesServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
+        int id = Integer.parseInt(req.getParameter(Purse.ID));
 
         List<Purse> purses = purseDao.getAllUserPurses(id);
-        req.setAttribute("purses", purses);
+        req.setAttribute(PURSES, purses);
 
         req.getRequestDispatcher(USER_PURSES).forward(req, resp);
     }

@@ -29,7 +29,7 @@ public class CurrencyDaoImpl implements CurrencyDao {
     /**
      * Метод удаляет валюту.
      *
-     * @param id nt
+     * @param id int
      */
     @Override
     public void deleteCurrency(int id) {
@@ -64,7 +64,7 @@ public class CurrencyDaoImpl implements CurrencyDao {
             session.beginTransaction();
 
             Query query = session.createQuery("delete from Purse where currency.id=:id");
-            query.setParameter("id", id);
+            query.setParameter(Currency.ID, id);
             query.executeUpdate();
 
             session.getTransaction().commit();

@@ -25,6 +25,22 @@ public class AddPurseServlet extends HttpServlet {
      */
     private static final String ADD_PURSE = "WEB-INF/view/addPurse.jsp";
     /**
+     * Константа дао кошельков.
+     */
+    private static final String PURSE_DAO = "purseDao";
+    /**
+     * Константа дао валют.
+     */
+    private static final String CURRENCY_DAO = "currencyDao";
+    /**
+     * Атрибут.
+     */
+    private static final String CURRENCIES = "currencies";
+    /**
+     * Jsp страница всех кошельков.
+     */
+    private static final String PURSES = "purses";
+    /**
      * Дао кошелька.
      */
     private PurseDao purseDao;
@@ -38,8 +54,8 @@ public class AddPurseServlet extends HttpServlet {
      */
     @Override
     public void init() {
-        purseDao = (PurseDao) getServletContext().getAttribute("purseDao");
-        currencyDao = (CurrencyDao) getServletContext().getAttribute("currencyDao");
+        purseDao = (PurseDao) getServletContext().getAttribute(PURSE_DAO);
+        currencyDao = (CurrencyDao) getServletContext().getAttribute(CURRENCY_DAO);
     }
 
     /**
@@ -54,7 +70,7 @@ public class AddPurseServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Currency> currencies = currencyDao.getAll();
 
-        req.setAttribute("currencies", currencies);
+        req.setAttribute(CURRENCIES, currencies);
 
         req.getRequestDispatcher(ADD_PURSE).forward(req, resp);
     }
@@ -69,15 +85,15 @@ public class AddPurseServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user");
-        String amount = req.getParameter("amount");
-        String currencyId = req.getParameter("currency");
+        User user = (User) session.getAttribute(Purse.USER);
+        String amount = req.getParameter(Purse.AMOUNT);
+        String currencyId = req.getParameter(Purse.CURRENCY);
         Currency currency = currencyDao.findById(Integer.parseInt(currencyId));
 
         Purse purse = new Purse(user, currency, new BigDecimal(amount), new Timestamp(System.currentTimeMillis()));
 
         purseDao.insert(purse);
 
-        resp.sendRedirect("purses");
+        resp.sendRedirect(PURSES);
     }
 }

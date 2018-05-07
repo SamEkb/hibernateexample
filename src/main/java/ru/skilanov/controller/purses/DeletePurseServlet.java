@@ -1,6 +1,7 @@
 package ru.skilanov.controller.purses;
 
 import ru.skilanov.dao.PurseDao;
+import ru.skilanov.model.Purse;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,14 @@ import java.io.IOException;
  */
 public class DeletePurseServlet extends HttpServlet {
     /**
+     * Страница всех кошельков.
+     */
+    private static final String PURSES = "purses";
+    /**
+     * Константа дао кошельков.
+     */
+    private static final String PURSE_DAO = "purseDao";
+    /**
      * Дао кошелька.
      */
     private PurseDao purseDao;
@@ -21,7 +30,7 @@ public class DeletePurseServlet extends HttpServlet {
      */
     @Override
     public void init() {
-        purseDao = (PurseDao) getServletContext().getAttribute("purseDao");
+        purseDao = (PurseDao) getServletContext().getAttribute(PURSE_DAO);
     }
 
     /**
@@ -33,10 +42,10 @@ public class DeletePurseServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
+        int id = Integer.parseInt(req.getParameter(Purse.ID));
 
         purseDao.delete(id);
 
-        resp.sendRedirect("purses");
+        resp.sendRedirect(PURSES);
     }
 }

@@ -10,6 +10,16 @@ import java.io.IOException;
  * Сервлет выхода из сессии.
  */
 public class LogoutServlet extends HttpServlet {
+
+    /**
+     * Атрибут.
+     */
+    private static final String USER = "user";
+    /**
+     * Главная страница.
+     */
+    private static final String INDEX = "/";
+
     /**
      * Гет метод отвечающий за выход из сессии.
      *
@@ -21,8 +31,8 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
 
-        session.removeAttribute("user");
+        session.removeAttribute(USER);
 
-        resp.sendRedirect("/");
+        resp.sendRedirect(INDEX);
     }
 }

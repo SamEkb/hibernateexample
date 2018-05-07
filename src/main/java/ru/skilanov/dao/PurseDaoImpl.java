@@ -9,7 +9,7 @@ import ru.skilanov.model.Purse;
 import java.util.List;
 
 /**
- * реализация интерфейса PurseDaoю
+ * реализация интерфейса PurseDao.
  */
 public class PurseDaoImpl implements PurseDao {
 
@@ -132,7 +132,7 @@ public class PurseDaoImpl implements PurseDao {
             session.beginTransaction();
 
             Query query = session.createQuery("from Purse where user.id=:id");
-            query.setParameter("id", id);
+            query.setParameter(Purse.ID, id);
 
             List<Purse> list = query.list();
 

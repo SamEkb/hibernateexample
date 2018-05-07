@@ -1,6 +1,7 @@
 package ru.skilanov.controller.users;
 
 import ru.skilanov.dao.UserDaoImpl;
+import ru.skilanov.model.User;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,14 @@ import java.io.IOException;
  */
 public class DeleteUserServlet extends HttpServlet {
     /**
+     * Константа дао пользователей.
+     */
+    private static final String USER_DAO = "userDao";
+    /**
+     * Список всех пользователей страница.
+     */
+    private static final String USERS_LIST = "usersList";
+    /**
      * Дао пользователя.
      */
     private UserDaoImpl userDao;
@@ -21,7 +30,7 @@ public class DeleteUserServlet extends HttpServlet {
      */
     @Override
     public void init() {
-        userDao = (UserDaoImpl) getServletContext().getAttribute("userDao");
+        userDao = (UserDaoImpl) getServletContext().getAttribute(USER_DAO);
     }
 
     /**
@@ -33,10 +42,10 @@ public class DeleteUserServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
+        int id = Integer.parseInt(req.getParameter(User.ID));
 
         userDao.deleteUser(id);
 
-        resp.sendRedirect("usersList");
+        resp.sendRedirect(USERS_LIST);
     }
 }

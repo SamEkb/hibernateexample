@@ -64,7 +64,7 @@ public class UserDaoImpl implements UserDao {
             session.beginTransaction();
 
             Query query = session.createQuery("delete from Purse where user.id=:id");
-            query.setParameter("id", id);
+            query.setParameter(User.ID, id);
             query.executeUpdate();
 
             session.getTransaction().commit();
@@ -153,8 +153,8 @@ public class UserDaoImpl implements UserDao {
             session.beginTransaction();
 
             Query query = session.createQuery("from User where login=:login and password=:password");
-            query.setParameter("login", login);
-            query.setParameter("password", password);
+            query.setParameter(User.LOGIN, login);
+            query.setParameter(User.PASSWORD, password);
 
             List<User> users = query.list();
 
@@ -181,8 +181,8 @@ public class UserDaoImpl implements UserDao {
         session.beginTransaction();
 
         Query query = session.createQuery("from User where login=:login and password=:password");
-        query.setParameter("login", login);
-        query.setParameter("password", password);
+        query.setParameter(User.LOGIN, login);
+        query.setParameter(User.PASSWORD, password);
 
         List<User> users = query.list();
 

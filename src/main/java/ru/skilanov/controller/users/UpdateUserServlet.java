@@ -15,9 +15,21 @@ import java.io.IOException;
  */
 public class UpdateUserServlet extends HttpServlet {
     /**
+     * Jsp страница всех пользователей.
+     */
+    private static final String USERS_LIST = "usersList";
+    /**
      * JSP страница обновления.
      */
     private static final String UPDATE_USER = "/WEB-INF/view//updateUser.jsp";
+    /**
+     * Атрибут.
+     */
+    private static final String USER = "user";
+    /**
+     * Константа дао пользователя.
+     */
+    private static final String USER_DAO = "userDao";
     /**
      * Дао пользователя.
      */
@@ -28,7 +40,7 @@ public class UpdateUserServlet extends HttpServlet {
      */
     @Override
     public void init() {
-        userDao = (UserDaoImpl) getServletContext().getAttribute("userDao");
+        userDao = (UserDaoImpl) getServletContext().getAttribute(USER_DAO);
     }
 
     /**
@@ -41,10 +53,10 @@ public class UpdateUserServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
+        int id = Integer.parseInt(req.getParameter(User.ID));
         User user = userDao.findById(id);
 
-        req.setAttribute("user", user);
+        req.setAttribute(USER, user);
 
         req.getRequestDispatcher(UPDATE_USER).forward(req, resp);
     }
@@ -58,13 +70,13 @@ public class UpdateUserServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        String name = req.getParameter("name");
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
-        String email = req.getParameter("email");
-        String city = req.getParameter("city");
-        Role role = Role.getRole(req.getParameter("role"));
+        int id = Integer.parseInt(req.getParameter(User.ID));
+        String name = req.getParameter(User.NAME);
+        String login = req.getParameter(User.LOGIN);
+        String password = req.getParameter(User.PASSWORD);
+        String email = req.getParameter(User.EMAIL);
+        String city = req.getParameter(User.CITY);
+        Role role = Role.getRole(req.getParameter(User.ROLE));
 
         User user = userDao.findById(id);
         user.setName(name);
@@ -76,6 +88,6 @@ public class UpdateUserServlet extends HttpServlet {
 
         userDao.update(user);
 
-        resp.sendRedirect("usersList");
+        resp.sendRedirect(USERS_LIST);
     }
 }

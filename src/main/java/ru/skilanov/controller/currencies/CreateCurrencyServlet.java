@@ -18,6 +18,14 @@ public class CreateCurrencyServlet extends HttpServlet {
      */
     private static final String ADD_CURRENCY = "WEB-INF/view/addCurrency.jsp";
     /**
+     * Константа дао валют.
+     */
+    private static final String CURRENCY_DAO = "currencyDao";
+    /**
+     * Jsp страница списка всех валют.
+     */
+    private static final String CURRENCY_LIST = "currencyList";
+    /**
      * Дао валют.
      */
     private CurrencyDao currencyDao;
@@ -29,16 +37,16 @@ public class CreateCurrencyServlet extends HttpServlet {
      */
     @Override
     public void init() throws ServletException {
-        currencyDao = (CurrencyDao) getServletContext().getAttribute("currencyDao");
+        currencyDao = (CurrencyDao) getServletContext().getAttribute(CURRENCY_DAO);
     }
 
     /**
      * Гет метод отвечающий за запрос страницы добавления валюты.
      *
-     * @param req HttpServletRequest
+     * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      * @throws ServletException ServletException
-     * @throws IOException IOException
+     * @throws IOException      IOException
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,19 +55,20 @@ public class CreateCurrencyServlet extends HttpServlet {
 
     /**
      * Пост метод отвечающий за ввод клинтом новой валюты.
-     * @param req HttpServletRequest
+     *
+     * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      * @throws IOException IOException
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String name = req.getParameter("name");
+        String name = req.getParameter(Currency.NAME);
 
         Currency currency = new Currency();
         currency.setName(name);
 
         currencyDao.insert(currency);
 
-        resp.sendRedirect("currencyList");
+        resp.sendRedirect(CURRENCY_LIST);
     }
 }

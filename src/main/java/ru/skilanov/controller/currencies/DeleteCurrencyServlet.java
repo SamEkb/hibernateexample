@@ -1,6 +1,7 @@
 package ru.skilanov.controller.currencies;
 
 import ru.skilanov.dao.CurrencyDao;
+import ru.skilanov.model.Currency;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,14 @@ import java.io.IOException;
  */
 public class DeleteCurrencyServlet extends HttpServlet {
     /**
+     * Константа дао валют.
+     */
+    private static final String CURRENCY_DAO = "currencyDao";
+    /**
+     * Jsp страница списка всех валют.
+     */
+    private static final String CURRENCY_LIST = "currencyList";
+    /**
      * Дао валюты.
      */
     private CurrencyDao currencyDao;
@@ -21,7 +30,7 @@ public class DeleteCurrencyServlet extends HttpServlet {
      */
     @Override
     public void init() {
-        currencyDao = (CurrencyDao) getServletContext().getAttribute("currencyDao");
+        currencyDao = (CurrencyDao) getServletContext().getAttribute(CURRENCY_DAO);
     }
 
     /**
@@ -33,10 +42,10 @@ public class DeleteCurrencyServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
+        int id = Integer.parseInt(req.getParameter(Currency.ID));
 
         currencyDao.deleteCurrency(id);
 
-        resp.sendRedirect("currencyList");
+        resp.sendRedirect(CURRENCY_LIST);
     }
 }

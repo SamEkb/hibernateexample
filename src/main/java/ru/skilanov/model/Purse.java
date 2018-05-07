@@ -14,6 +14,13 @@ import java.sql.Timestamp;
 @EqualsAndHashCode
 @ToString
 public class Purse {
+
+    public static final String ID = "id";
+    public static final String USER = "user";
+    public static final String CURRENCY = "currency";
+    public static final String AMOUNT = "amount";
+    public static final String CREATE_DATE = "createDate";
+
     /**
      * id.
      */

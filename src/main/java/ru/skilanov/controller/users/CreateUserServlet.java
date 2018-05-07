@@ -20,6 +20,14 @@ public class CreateUserServlet extends HttpServlet {
      */
     private static final String ADD_USER = "WEB-INF/view/addUser.jsp";
     /**
+     * Страница списка всех пользователей.
+     */
+    private static final String USERS_LIST = "usersList";
+    /**
+     * Константа дао пользователей.
+     */
+    private static final String USER_DAO = "userDao";
+    /**
      * Дао пользователя.
      */
     private UserDao userDao;
@@ -29,7 +37,7 @@ public class CreateUserServlet extends HttpServlet {
      */
     @Override
     public void init() {
-        userDao = (UserDao) getServletContext().getAttribute("userDao");
+        userDao = (UserDao) getServletContext().getAttribute(USER_DAO);
     }
 
     /**
@@ -54,17 +62,17 @@ public class CreateUserServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String name = req.getParameter("name");
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
-        String email = req.getParameter("email");
-        String city = req.getParameter("city");
-        Role role = Role.getRole(req.getParameter("role"));
+        String name = req.getParameter(User.NAME);
+        String login = req.getParameter(User.LOGIN);
+        String password = req.getParameter(User.PASSWORD);
+        String email = req.getParameter(User.EMAIL);
+        String city = req.getParameter(User.CITY);
+        Role role = Role.getRole(req.getParameter(User.ROLE));
 
         User user = new User(name, login, password, email, city, role, new Timestamp(System.currentTimeMillis()));
 
         userDao.insert(user);
 
-        resp.sendRedirect("usersList");
+        resp.sendRedirect(USERS_LIST);
     }
 }

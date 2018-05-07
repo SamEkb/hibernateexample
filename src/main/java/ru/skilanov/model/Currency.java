@@ -13,6 +13,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Currency implements Serializable {
+    public static final String ID = "id";
+    public static final String NAME = "name";
     /**
      * id.
      */
