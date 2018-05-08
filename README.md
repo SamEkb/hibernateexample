@@ -13,3 +13,4 @@ Java EE project
 5) PostgreSQL
 6) JUnit
 7) Mockito
+8) Lombok
