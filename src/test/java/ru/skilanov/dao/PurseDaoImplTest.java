@@ -1,6 +1,5 @@
 package ru.skilanov.dao;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Before;
@@ -16,18 +15,30 @@ import java.sql.Timestamp;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
+/**
+ * Класс тестирует dao кошельков.
+ */
 public class PurseDaoImplTest {
 
-    private SessionFactory sessionFactory;
-    private Session session;
+    /**
+     * Дао кошельков.
+     */
     private PurseDao purseDao;
 
+    /**
+     * Перед тестом.
+     *
+     * @throws Exception Exception
+     */
     @Before
     public void setUp() throws Exception {
-        sessionFactory = new Configuration().configure().buildSessionFactory();
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         purseDao = new PurseDaoImpl(sessionFactory);
     }
 
+    /**
+     * Тест добавления нового кошелька.
+     */
     @Test
     public void whenInsertNewPurse_ThenItInserted() {
         Purse purse = new Purse(new User("sam", "sam", "1", "mail", "moscow", Role.USER,
@@ -39,6 +50,9 @@ public class PurseDaoImplTest {
         assertNotNull(purseDao.getAll());
     }
 
+    /**
+     * Тест получения всех кошельков.
+     */
     @Test
     public void whenGetAll_ThenHaveListOFPurses() {
         Purse purseSam = new Purse(new User("sam", "sam", "1", "mail", "moscow", Role.USER,
@@ -56,6 +70,9 @@ public class PurseDaoImplTest {
         assertThat(size, is(2));
     }
 
+    /**
+     * Тест удаления кошелька.
+     */
     @Test
     public void whenDelete_ThenItDeleted() {
         Purse purseSam = new Purse(new User("sam", "sam", "1", "mail", "moscow", Role.USER,
@@ -69,6 +86,9 @@ public class PurseDaoImplTest {
         assertNull(purseDao.findById(1));
     }
 
+    /**
+     * Тест изменения кошелька.
+     */
     @Test
     public void whenUpdate_ThenPurseUpdated() {
         Purse purseSam = new Purse(new User("sam", "sam", "1", "mail", "moscow", Role.USER,
@@ -87,6 +107,9 @@ public class PurseDaoImplTest {
         assertThat(purseDao.getAll().get(0).getUser(), is(user));
     }
 
+    /**
+     * Тест поиска кошелька по id.
+     */
     @Test
     public void whenFindById_ThenReturnRightResult() {
         User userSam = new User("sam", "sam", "1", "mail", "moscow", Role.USER,
@@ -102,6 +125,9 @@ public class PurseDaoImplTest {
         assertThat(purseId, is(1));
     }
 
+    /**
+     * Тест получения всех кошельков пользователя.
+     */
     @Test
     public void whenGetAllUserPurses_ThenReturnRightResult() {
         User userSam = new User("sam", "sam", "1", "mail", "moscow", Role.USER,
